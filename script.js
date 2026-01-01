@@ -2,7 +2,7 @@
 // Lista de palabras
 // =======================
 const words = [
-  "Si no te activas, si no haces algo, la probabilidad es 0", "70´", "NICO (Abro para 360º)"
+  "Si no te activas, si no haces algo, la probabilidad es 0", "BlaBlaBla´", "BlaBlaBla"
 ];
 
 // =======================
