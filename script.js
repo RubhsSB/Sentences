@@ -2,11 +2,7 @@
 // Lista de palabras
 // =======================
 const words = [
-  "NICO (Led giro atrás en 5)", "NICO (Led giro en 1 con camb de mano)", "SUZIE Q 1", "MAMBO", "ATRÁS", "LATERAL", "NICO (Doble giro Fol + Giro Led en 5)", "NICO (Rompe giro Foll con brazo)", "Deyfron (Cross + Doble Giro Fol)", 
-  "NICO (Led Frame giro FOL en 5 con mano IZQ)", "NICO (Led Frame giro FOL en 5 con mano DCH - mano abajo)", "NICO (Led preparo giro Fol en 5 + Giro led en 6)", "NICO (Led tiro mano IZQ en 1 atrás Fol y me pongo a su Izq)", "GIRA Fol en 5 + Gira Lead en 1)", 
-  "Deyfron (Cross 2 manos + sombra + Lid gira por delante)", "NICO (Led giro en 1 + lanzo en 5 + pongo lado Derch Foll)", "Billy Roy Cross + Rompe", "Billy Roy Cross + Sombra Led", "Cross SuperX", "Excalibur", "NICO (Cross con Giro)", 
-  "NICO (Led Frame giro FOL en 5 con mano DCH - giro yo mano cintura)", "Escucha la música", "Escucha la música", "Escucha la música", "Escucha la música", "Illusion", "Illusion", 
-  "NICO (Giro Follow en 5 + Giro Leader cambiando de mano y Piso Pico Piso Pico + Giro Follo y Piso Pico Piso Pico)", "70´", "NICO (Abro para 360º)"
+  "Si no te activas, si no haces algo, la probabilidad es 0", "70´", "NICO (Abro para 360º)"
 ];
 
 // =======================
