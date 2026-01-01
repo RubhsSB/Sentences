@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resultados - SALSA</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      padding: 20px;
+      background-color: #f4f4f4;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 32px;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      font-size: 24px;
+      color: #555;
+      margin-top: 30px;
+    }
+
+    ol {
+      padding-left: 0;
+      list-style-position: inside;
+    }
+
+    li {
+      margin-bottom: 6px;
+      font-size: 18px;
+      color: #222;
+    }
+
+    button {
+      margin-top: 40px;
+      font-size: 18px;
+      padding: 10px 20px;
+      cursor: pointer;
+      background-color: #28a745;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    p {
+      color: #777;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🏆 Top 10 Puntajes - SALSA</h1>
+  <div id="results-container"></div>
+  <a href="index.html"><button>Volver</button></a>
+
+  <script>
+    const resultsContainer = document.getElementById("results-container");
+    const scores = JSON.parse(localStorage.getItem("hardHighScores")) || [];
+
+    let scoreHTML = "";
+
+    if (scores.length > 0) {
+      scoreHTML += `<h2>🔴 Resultados</h2><ol>`;
+      scores.forEach(score => {
+        scoreHTML += `<li>Promedio: <strong>${score.averageTime.toFixed(2)}s</strong> | Palabras: <strong>${score.wordCount}</strong></li>`;
+      });
+      scoreHTML += "</ol>";
+    } else {
+      scoreHTML += `<p>No hay puntajes guardados aún.</p>`;
+    }
+
+    resultsContainer.innerHTML = scoreHTML;
+  </script>
+</body>
+</html>
