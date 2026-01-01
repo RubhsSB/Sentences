@@ -1,6 +1,6 @@
 {
-  "name": "SALSA",
-  "short_name": "SALSA",
+  "name": "SENTENCES",
+  "short_name": "SENTENCES",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
