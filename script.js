@@ -2,7 +2,7 @@
 // Lista de palabras
 // =======================
 const words = [
-  "Si no te activas, si no haces algo, la probabilidad es 0", "BlaBlaBla´", "BlaBlaBla"
+  "Si no te activas, si no haces algo, la probabilidad es 0", "«El que se guarda un elogio se queda con algo ajeno» Pablo Picasso", "BlaBlaBla"
 ];
 
 // =======================
