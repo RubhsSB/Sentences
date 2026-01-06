@@ -120,9 +120,4 @@ document.addEventListener("touchend", e => {
 (function init() {
   updateFavoriteUI();
   showNewWord();
-
-  // Si quieres mantener PWA, dejamos el service worker como lo tenías
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("sw.js").catch(() => {});
-  }
 })();
