@@ -2,7 +2,8 @@
 // Lista de palabras
 // =======================
 const words = [
-  "Si no te activas, si no haces algo, la probabilidad es 0", "«El que se guarda un elogio se queda con algo ajeno» Pablo Picasso", "BlaBlaBla"
+  "Si no te activas, si no haces algo, la probabilidad es 0", "«El que se guarda un elogio se queda con algo ajeno» Pablo Picasso", "No nos enamoramos de quién nos baja la luna, si no de quién quiere ir a la luna", 
+  "Una relación de calidad sobrevive a la verdad"
 ];
 
 // =======================
