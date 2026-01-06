@@ -5,36 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SENTENCES</title>
 
-  <!-- ✅ Aquí va el manifest y el tema -->
   <link rel="manifest" href="manifest.json" />
   <meta name="theme-color" content="#f97316" />
 
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Botón para ver resultados -->
-  <div id="results-button">
-    <a href="resultados.html" title="Ver resultados">
-      <button>⏳</button>
-    </a>
-  </div>
-
-  <!-- Tarjeta principal del juego -->
   <div class="card">
-    <div id="word">Presiona <strong>Play</strong> para comenzar</div>
-
-    <div class="info-row">
-      <div id="counter">Palabras: 0</div>
-      <div id="timer">Tiempo: 0.0s</div>
-    </div>
+    <div id="word">Cargando frase...</div>
 
     <div class="button-row">
-      <button id="play">▶ Play</button>
-      <button id="next" disabled>Siguiente</button>
-      <button id="finish" disabled>Finalizar</button>
+      <button id="next">Siguiente</button>
+      <button id="favorite">⭐ Favorita</button>
     </div>
 
-    <div id="result"></div>
+    <div id="favorites-count"></div>
   </div>
 
   <script src="script.js"></script>
