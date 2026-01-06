@@ -5,6 +5,10 @@ const words = [
   "Si no te activas, si no haces algo, la probabilidad es 0",
   "El que se guarda un elogio se queda con algo ajeno - Pablo Picasso",
   "No nos enamoramos de quién nos baja la luna, si no de quién quiere ir a la luna",
+  "Mi filossofía de seducción: Cuánto más verdad más fácil",
+  "Hay que ser muy valiente para terminar una relación, pero para iniciar una siempre debe de haber un Heroe",
+  "Oye, me estoy dando cuenta de que, si me despido ahora, luego me voy a quedar un rato pensando que debería haber sido valiente y haberte pedido el teléfono. No quiero inventarme nada ni forzar nada; simplemente me encantaría estar en contacto",
+  "Yo tengo una especie de norma: todo lo que, en una escala del 0 al 10, importe más de un 3, mejor hablarlo en persona. Si no se puede, mejor en vídeo; si no, en audio; si no, en una carta o en un texto bien elaborado. Y, por debajo de todo, WhatsApp",
   "La diferencia entre el inteligente y el tonto consiste en que aquél vive en guardia contra sus propias tonterías, las reconoce cuando apuntan y se esfuerza en eliminarlas, al paso que el tonto se entrega a ellas encantado y sin reservas - José Ortega y Gasset",
   "Una relación de calidad sobrevive a la verdad"
 ];
