@@ -1,11 +1,14 @@
-/* Fondo */
+/* Fondo general (modo oscuro elegante) */
 body {
   margin: 0;
   padding: 0;
-  background-color: #f03616;
-  color: #111;
+
+  background: radial-gradient(900px 500px at 50% 20%, #111827 0%, #0b1220 60%, #05070d 100%);
+  color: #f9fafb;
+
   font-family: 'Segoe UI', sans-serif;
-  height: 100vh;
+
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,13 +16,16 @@ body {
 
 /* Tarjeta */
 .card {
-  background-color: #f7f7f7;
-  padding: 28px;
-  border-radius: 15px;
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+  background-color: #0f172a; /* azul muy oscuro */
+  padding: 22px;
+  border-radius: 18px;
   text-align: center;
+
   max-width: 800px;
   width: 92%;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 16px 60px rgba(0, 0, 0, 0.45);
 }
 
 /* Frase */
@@ -29,38 +35,43 @@ body {
   align-items: center;
   justify-content: center;
 
-  min-height: 180px;
-  margin-bottom: 18px;
+  min-height: 160px;
+  margin-bottom: 16px;
   padding: 10px 8px;
 
   max-width: 42ch;
   margin-left: auto;
   margin-right: auto;
+
   line-height: 1.25;
 }
 
+/* Texto principal */
 #word .main-text {
-  font-size: 40px;
-  font-weight: 700;
-  color: #000;
+  font-size: 34px;
+  font-weight: 750;
+  color: #f9fafb;
   text-align: center;
   line-height: 1.25;
   word-break: break-word;
+
+  letter-spacing: -0.3px;
 }
 
+/* Texto secundario (paréntesis) */
 #word .parenthesis {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 400;
-  opacity: 0.85;
-  color: #444;
+  opacity: 0.9;
+  color: rgba(249, 250, 251, 0.85);
   margin-top: 10px;
   text-align: center;
   line-height: 1.25;
 }
 
-/* Si la frase es larga */
-#word.long .main-text { font-size: 30px; }
-#word.long .parenthesis { font-size: 18px; }
+/* Si la frase es larga, reducimos tamaños */
+#word.long .main-text { font-size: 26px; }
+#word.long .parenthesis { font-size: 16px; }
 
 /* Botones */
 .button-row {
@@ -71,39 +82,85 @@ body {
 }
 
 button {
-  font-size: 15px;
-  padding: 10px 18px;
+  font-size: 14px;
+  padding: 10px 16px;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
-  font-weight: bold;
+  font-weight: 700;
+
   background-color: #f97316;
-  color: white;
-  transition: all 0.2s ease;
+  color: #ffffff;
+
+  transition: transform 0.06s ease, background-color 0.2s ease;
 }
 
-button:hover { background-color: #ea580c; }
+button:hover {
+  background-color: #ea580c;
+}
 
-/* Favorita */
-#favorite { background-color: #111; }
-#favorite:hover { background-color: #333; }
-#favorite.is-fav { background-color: #16a34a; }
-#favorite.is-fav:hover { background-color: #15803d; }
+button:active {
+  transform: translateY(1px);
+}
+
+/* Favorita (diferente para destacar) */
+#favorite {
+  background-color: rgba(255, 255, 255, 0.10);
+  color: #f9fafb;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+#favorite:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+#favorite.is-fav {
+  background-color: rgba(34, 197, 94, 0.18);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+}
+
+#favorite.is-fav:hover {
+  background-color: rgba(34, 197, 94, 0.24);
+}
 
 /* Contador favoritas */
 #favorites-count {
-  margin-top: 10px;
-  font-size: 14px;
-  color: #444;
+  margin-top: 12px;
+  font-size: 13px;
+  color: rgba(249, 250, 251, 0.78);
 }
 
-/* Responsive */
+/* Responsive móvil */
 @media (max-width: 600px) {
-  .card { padding: 18px; }
-  #word { min-height: 160px; max-width: 34ch; }
-  #word .main-text { font-size: 32px; }
-  #word.long .main-text { font-size: 26px; }
-  #word .parenthesis { font-size: 18px; }
-  #word.long .parenthesis { font-size: 16px; }
-  button { padding: 9px 16px; font-size: 14px; }
+  .card {
+    padding: 18px;
+    width: 92%;
+  }
+
+  #word {
+    min-height: 150px;
+    max-width: 34ch;
+  }
+
+  #word .main-text {
+    font-size: 30px;
+  }
+
+  #word.long .main-text {
+    font-size: 24px;
+  }
+
+  #word .parenthesis {
+    font-size: 17px;
+  }
+
+  #word.long .parenthesis {
+    font-size: 15px;
+  }
+
+  button {
+    padding: 9px 14px;
+    font-size: 13px;
+    border-radius: 12px;
+  }
 }
