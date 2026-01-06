@@ -1,141 +1,105 @@
 // =======================
-// Lista de palabras
+// Lista de frases
 // =======================
 const words = [
-  "Si no te activas, si no haces algo, la probabilidad es 0", "«El que se guarda un elogio se queda con algo ajeno» Pablo Picasso", "No nos enamoramos de quién nos baja la luna, si no de quién quiere ir a la luna", 
+  "Si no te activas, si no haces algo, la probabilidad es 0",
+  "«El que se guarda un elogio se queda con algo ajeno» Pablo Picasso",
+  "No nos enamoramos de quién nos baja la luna, si no de quién quiere ir a la luna",
   "Una relación de calidad sobrevive a la verdad"
 ];
 
 // =======================
-// Variables y elementos
+// Elementos del DOM
+// =======================
+const wordElement = document.getElementById("word");
+const nextButton = document.getElementById("next");
+const favoriteButton = document.getElementById("favorite");
+const favoritesCount = document.getElementById("favorites-count");
+
+// =======================
+// Estado
 // =======================
 let currentWord = "";
-let startTime = 0;
-let totalTime = 0;
-let wordCount = 0;
-let timerInterval;
-let recentWords = [];
-
-const wordElement = document.getElementById("word");
-const playButton = document.getElementById("play");
-const nextButton = document.getElementById("next");
-const finishButton = document.getElementById("finish");
-const resultElement = document.getElementById("result");
-const counterElement = document.getElementById("counter");
-const timerElement = document.getElementById("timer");
 
 // =======================
-// Funciones
+// Mostrar frase (aleatoria, puede repetirse)
 // =======================
 function getRandomWord() {
-  let availableWords = words.filter(w => !recentWords.includes(w));
-
-  if (availableWords.length === 0) {
-    // Si ya usamos casi todas, reiniciamos la memoria
-    recentWords = [];
-    availableWords = [...words];
-  }
-
-  const word = availableWords[Math.floor(Math.random() * availableWords.length)];
-
-  // Guardamos en la lista de recientes (máximo 5)
-  recentWords.push(word);
-  if (recentWords.length > 5) recentWords.shift();
-
-  return word;
+  const idx = Math.floor(Math.random() * words.length);
+  return words[idx];
 }
 
+// Si hay un texto entre paréntesis al final, lo baja a otra línea
 function formatWordDisplay(word) {
   const match = word.match(/^(.*?)\s*(\([^)]+\))?$/);
-  const main = match[1];
-  const par = match[2] || "";
+  const main = (match && match[1]) ? match[1] : word;
+  const par = (match && match[2]) ? match[2] : "";
   return `<span class="main-text">${main.trim()}</span>${par ? `<br><span class="parenthesis">${par}</span>` : ""}`;
 }
 
-function startTimer() {
-  timerInterval = setInterval(() => {
-    const currentTime = ((Date.now() - startTime) / 1000).toFixed(1);
-    timerElement.textContent = `Tiempo: ${currentTime} segundos`;
-  }, 100);
+function applyLongClass(word) {
+  const LONG_LIMIT = 80; // si quieres, cambia este número
+  if (word.length > LONG_LIMIT) wordElement.classList.add("long");
+  else wordElement.classList.remove("long");
 }
 
-function stopTimer() {
-  clearInterval(timerInterval);
-}
-
-function saveHighScore(averageTime, wordCount) {
-  const key = "hardHighScores";
-  let scores = JSON.parse(localStorage.getItem(key)) || [];
-  scores.push({ averageTime, wordCount });
-  scores.sort((a, b) => a.averageTime - b.averageTime);
-  localStorage.setItem(key, JSON.stringify(scores.slice(0, 10)));
-}
-
-// =======================
-// Botón PLAY
-// =======================
-playButton.addEventListener("click", () => {
+function showNewWord() {
   currentWord = getRandomWord();
   wordElement.innerHTML = formatWordDisplay(currentWord);
-  startTime = Date.now();
-  wordCount = 0;
-  totalTime = 0;
-  counterElement.textContent = `Palabras jugadas: ${wordCount}`;
-  timerElement.textContent = `Tiempo: 0 segundos`;
-
-  playButton.disabled = true;
-  playButton.style.display = "none";
-  nextButton.disabled = false;
-  nextButton.style.display = "inline-block";
-  finishButton.disabled = false;
-  finishButton.style.display = "inline-block";
-
-  startTimer();
-});
+  applyLongClass(currentWord);
+  updateFavoriteUI();
+}
 
 // =======================
-// Botón SIGUIENTE
+// Favoritas (se guardan en el móvil con localStorage)
 // =======================
-nextButton.addEventListener("click", () => {
-  const endTime = Date.now();
-  totalTime += (endTime - startTime) / 1000;
-  wordCount++;
-  counterElement.textContent = `Palabras jugadas: ${wordCount}`;
-  stopTimer();
-  currentWord = getRandomWord();
-  wordElement.innerHTML = formatWordDisplay(currentWord);
-  startTime = Date.now();
-  startTimer();
-});
+function getFavorites() {
+  return JSON.parse(localStorage.getItem("favorites")) || [];
+}
 
-// =======================
-// Botón FINALIZAR
-// =======================
-finishButton.addEventListener("click", () => {
-  stopTimer();
-  if (wordCount > 0) {
-    const averageTime = totalTime / wordCount;
-    resultElement.textContent = `Promedio: ${averageTime.toFixed(2)} segundos por palabra.`;
-    saveHighScore(averageTime, wordCount);
+function setFavorites(list) {
+  localStorage.setItem("favorites", JSON.stringify(list));
+}
+
+function isFavorite(word) {
+  return getFavorites().includes(word);
+}
+
+function toggleFavorite() {
+  if (!currentWord) return;
+
+  const favs = getFavorites();
+  const idx = favs.indexOf(currentWord);
+
+  if (idx === -1) favs.push(currentWord);
+  else favs.splice(idx, 1);
+
+  setFavorites(favs);
+  updateFavoriteUI();
+}
+
+function updateFavoriteUI() {
+  const favs = getFavorites();
+  favoritesCount.textContent = `Favoritas guardadas: ${favs.length}`;
+
+  if (!currentWord) return;
+
+  if (isFavorite(currentWord)) {
+    favoriteButton.classList.add("is-fav");
+    favoriteButton.textContent = "★ Guardada";
   } else {
-    resultElement.textContent = "No has jugado todavía.";
+    favoriteButton.classList.remove("is-fav");
+    favoriteButton.textContent = "⭐ Favorita";
   }
-
-  playButton.disabled = false;
-  playButton.style.display = "inline-block";
-  nextButton.disabled = true;
-  nextButton.style.display = "none";
-  finishButton.disabled = true;
-  finishButton.style.display = "none";
-
-  wordElement.textContent = "Presiona 'Play' para comenzar de nuevo.";
-  counterElement.textContent = `Palabras jugadas: 0`;
-  timerElement.textContent = `Tiempo: 0 segundos`;
-});
+}
 
 // =======================
-// Swipe en móviles
+// Eventos
 // =======================
+nextButton.addEventListener("click", showNewWord);
+favoriteButton.addEventListener("click", toggleFavorite);
+
+// Swipe en móviles (izquierda = siguiente)
 let touchStartX = 0;
 let touchEndX = 0;
 
@@ -145,16 +109,20 @@ document.addEventListener("touchstart", e => {
 
 document.addEventListener("touchend", e => {
   touchEndX = e.changedTouches[0].screenX;
-  if (touchEndX < touchStartX - 50 && !nextButton.disabled) {
-    nextButton.click();
+  if (touchEndX < touchStartX - 50) {
+    showNewWord();
   }
 });
 
 // =======================
-// Service Worker (PWA)
+// Inicio
 // =======================
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js')
-    .then(reg => console.log("✅ Service Worker registrado:", reg.scope))
-    .catch(err => console.warn("❌ Error al registrar el Service Worker:", err));
-}
+(function init() {
+  updateFavoriteUI();
+  showNewWord();
+
+  // Si quieres mantener PWA, dejamos el service worker como lo tenías
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("sw.js").catch(() => {});
+  }
+})();
