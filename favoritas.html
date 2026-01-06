@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Favoritas - SENTENCES</title>
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Pequeños ajustes para que esta pantalla se lea bien -->
+  <style>
+    body {
+      align-items: flex-start;
+      justify-content: flex-start;
+      height: auto;
+      padding: 20px 0;
+    }
+
+    .card {
+      text-align: left;
+    }
+
+    h1 {
+      margin: 0 0 12px 0;
+      font-size: 22px;
+      color: #111;
+    }
+
+    #empty {
+      color: #444;
+      margin-top: 10px;
+    }
+
+    ol {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 10px;
+      line-height: 1.35;
+      color: #111;
+    }
+
+    .top-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .top-actions a {
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
+    <h1>Favoritas</h1>
+
+    <div id="content"></div>
+
+    <div class="top-actions">
+      <a href="index.html"><button>Volver</button></a>
+    </div>
+  </div>
+
+  <script>
+    const content = document.getElementById("content");
+    const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+    if (favorites.length === 0) {
+      content.innerHTML = '<div id="empty">Aún no has guardado favoritas.</div>';
+    } else {
+      // Mostramos la lista en orden (las primeras guardadas salen primero)
+      let html = "<ol>";
+      favorites.forEach((text) => {
+        // Evitamos interpretar caracteres como HTML
+        const safeText = String(text)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;");
+        html += `<li>${safeText}</li>`;
+      });
+      html += "</ol>";
+      content.innerHTML = html;
+    }
+  </script>
+</body>
+</html>
