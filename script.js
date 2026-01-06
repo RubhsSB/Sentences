@@ -3,8 +3,9 @@
 // =======================
 const words = [
   "Si no te activas, si no haces algo, la probabilidad es 0",
-  "«El que se guarda un elogio se queda con algo ajeno» Pablo Picasso",
+  "El que se guarda un elogio se queda con algo ajeno - Pablo Picasso",
   "No nos enamoramos de quién nos baja la luna, si no de quién quiere ir a la luna",
+  "La diferencia entre el inteligente y el tonto consiste en que aquél vive en guardia contra sus propias tonterías, las reconoce cuando apuntan y se esfuerza en eliminarlas, al paso que el tonto se entrega a ellas encantado y sin reservas - José Ortega y Gasset",
   "Una relación de calidad sobrevive a la verdad"
 ];
 
