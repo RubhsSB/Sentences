@@ -6,6 +6,7 @@ const words = [
   "El que se guarda un elogio se queda con algo ajeno - Pablo Picasso",
   "No nos enamoramos de quién nos baja la luna, si no de quién quiere ir a la luna",
   "Mi filossofía de seducción: Cuánto más verdad más fácil",
+  "Chris, ¿qué dirías si contratara a un tipo que vino a una entrevista sin camisa?. Will responde: Debería tener unos pantalones muy buenos",
   "Los nuevos hábitos se forman mejor cuando los encadenas a otros que ya tienes - James Clear",
   "Jamás cambiarás tu vida hasta que cambies algo que haces cada día. El secreto de tu éxito se encuentra en tu rutina diaria – John C Maxwell",
   "Hay que ser muy valiente para terminar una relación, pero para iniciar una siempre debe de haber un Heroe",
